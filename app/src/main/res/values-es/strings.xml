@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">Times Moviews</string>
+    <string name="button_description">Pulse para buscar</string>
+    <string name="connect_error">No fue posible conectarse a nytimes.com</string>
+    <string name="hint_text">Introduzca una película (título Inglés )</string>
+    <string name="invalid_url">URL Inválida</string>
+    <string name="load">Buscando...</string>
+    <string name="movie_image">Imagen de una escena de la película</string>
+    <string name="no_results">No se encontraron resultados</string>
+    <string name="no_summary">No se encontraron resumen</string>
+    <string name="rating_description">Puntuación Bar con cinco estrellas</string>
+    <string name="read_error">No se puede leer datos de película</string>
+    <string name="review_author">Por: %s</string>
+    <string name="summary_short">Resumen de la reseña:</string>
+    <string name="title_activity_review_description">Descripción de la reseña</string>
+    <string name="gave">Di</string>
+    <string name="stars">estrellas para esta reseña!</string>
+</resources>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:paddingBottom="@dimen/activity_vertical_margin"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:paddingTop="@dimen/activity_vertical_margin"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="br.com.lopes.danielebonilha.ReviewDescription"
+    tools:showIn="@layout/activity_review_description"
+    android:orientation="vertical"
+    android:nestedScrollingEnabled="false">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/summary_short"
+        android:id="@+id/reviewSumTextView"
+        android:textAppearance="@android:style/TextAppearance.DeviceDefault.Large"
+        android:elegantTextHeight="false" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">>
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                 android:layout_width="match_parent"
+                 android:layout_height="wrap_content"
+                 android:id="@+id/summaryTextView"
+                 android:textIsSelectable="false"
+                 android:textSize="@dimen/abc_text_size_medium_material"
+                 android:nestedScrollingEnabled="false" />
+
+            <RatingBar
+                android:layout_gravity="bottom|right"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/reviewRatingBar"
+                style="@android:style/Widget.Material.Light.RatingBar.Indicator"
+                android:theme="@style/RatingBar"
+                android:clickable="true"
+                android:numStars="@integer/num_stars"
+                android:isIndicator="false"
+                android:contentDescription="@string/rating_description" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

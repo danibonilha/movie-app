@@ -1,0 +1,24 @@
+<resources>
+    <string name="app_name">Times Moviews</string>
+    <string name="title_activity_review_description">Review Description</string>
+    <string name="api_key" translatable="false">356211760b6c46929e3c2bf5d0eedb61</string>
+    <string name="web_service_url" translatable="false">https://api.nytimes.com/svc/movies/v2/reviews/search.json?api_key=</string>
+    <string name="movie_image">A image scene from the movie</string>
+    <string name="invalid_url">Invalid URL</string>
+    <string name="hint_text">Enter movie</string>
+    <string name="read_error">Unable to read movie data</string>
+    <string name="connect_error">Unable to connect to nytimes.com</string>
+    <string name="movie_title" translatable="false">%s</string>
+    <string name="publication_date" translatable="false">%s</string>
+    <string name="review_author">By: %s</string>
+    <string name="no_results">No results found</string>
+    <string name="summary_short">Review Summary:</string>
+    <string name="no_summary">No summary available</string>
+    <string name="load">Searching...</string>
+    <string name="facebook_app_id" translatable="false">658178697670952</string>
+    <string name="rating_description">Rating Bar with five stars</string>
+    <string name="button_description">Click to search</string>
+    <string name="stars">stars to this review!</string>
+    <string name="gave">I gave </string>
+
+</resources>
