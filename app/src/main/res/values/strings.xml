@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">Times Moviews</string>
     <string name="title_activity_review_description">Review Description</string>
-    <string name="api_key" translatable="false">356211760b6c46929e3c2bf5d0eedb61</string>
+    <string name="api_key" translatable="false">e741155655be4246b2fa739abdcf2f51</string>
     <string name="web_service_url" translatable="false">https://api.nytimes.com/svc/movies/v2/reviews/search.json?api_key=</string>
     <string name="movie_image">A image scene from the movie</string>
     <string name="invalid_url">Invalid URL</string>
@@ -20,5 +20,7 @@
     <string name="button_description">Click to search</string>
     <string name="stars">stars to this review!</string>
     <string name="gave">I gave </string>
+    <string name="check_review">Check full review in the link below: </string>
+    <string name="review_rating">Rate and share on Facebook</string>
 
 </resources>

@@ -1,4 +1,4 @@
-package br.com.lopes.danielebonilha;
+package com.dbonilha.movieapp;
 
 import android.content.Intent;
 import android.net.Uri;
@@ -12,9 +12,11 @@ import com.facebook.share.widget.ShareDialog;
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.text.method.LinkMovementMethod;
 import android.view.View;
 import android.widget.RatingBar;
 import android.widget.TextView;
+
 
 
 
@@ -25,6 +27,7 @@ public class ReviewDescription extends AppCompatActivity {
     RatingBar reviewRatingBar;
     TextView summaryText;
     TextView reviewSumTextView;
+    TextView urlText;
     ShareDialog shareDialog;
     CallbackManager callbackManager;
     Intent intent;
@@ -41,15 +44,13 @@ public class ReviewDescription extends AppCompatActivity {
         shareDialog = new ShareDialog(this);
 
 
-
-
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //criação do Up button
 
         intent = getIntent();
         String summary = intent.getStringExtra(("summary"));
-
+        final String urlReview = intent.getStringExtra(("link"));
 
         summaryText = (TextView) findViewById(R.id.summaryTextView);
         reviewSumTextView = (TextView) findViewById(R.id.reviewSumTextView);
@@ -59,16 +60,15 @@ public class ReviewDescription extends AppCompatActivity {
         reviewRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
             public void onRatingChanged(RatingBar ratingBar, float rating,boolean fromUser) {
 
-                String link = intent.getStringExtra(("link"));
                 String linkTitle  = intent.getStringExtra(("linkTitle"));
 
-                //após a selecção das estrelas é aberta uma janela para que o usuario compartilhe
+                //após a seleção das estrelas é aberta uma janela para que o usuario compartilhe
                 if (ShareDialog.canShow(ShareLinkContent.class)) {
                     ShareLinkContent linkContent = new ShareLinkContent.Builder()
                             .setContentTitle(getString(R.string.gave) + " " + rating + " "
                                     + getString(R.string.stars))
                             .setContentDescription(linkTitle)
-                            .setContentUrl(Uri.parse(link))
+                            .setContentUrl(Uri.parse(urlReview))
                             .build();
 
                     shareDialog.show(linkContent);

@@ -1,4 +1,4 @@
-package br.com.lopes.danielebonilha;
+package com.dbonilha.movieapp;
 
 import org.junit.Test;
 

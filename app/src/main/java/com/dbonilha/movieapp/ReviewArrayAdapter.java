@@ -1,5 +1,5 @@
-package br.com.lopes.danielebonilha;
-import br.com.lopes.danielebonilha.R;
+package com.dbonilha.movieapp;
+import com.dbonilha.movieapp.R;
 import android.content.Context;
 
 import android.graphics.Bitmap;

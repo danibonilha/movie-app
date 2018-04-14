@@ -1,4 +1,4 @@
-package br.com.lopes.danielebonilha;
+package com.dbonilha.movieapp;
 
 import android.app.ProgressDialog;
 import android.content.Context;
