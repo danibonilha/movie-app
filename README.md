@@ -1,4 +1,4 @@
-# movie-app
+# moviews-app
 Android App built as a college project in mid/2016.
 
 The Android app should met the following requirements:
