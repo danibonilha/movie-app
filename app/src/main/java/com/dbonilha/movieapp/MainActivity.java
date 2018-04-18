@@ -33,8 +33,6 @@ import java.util.List;
 public class MainActivity extends AppCompatActivity {
 
     private List<Review> reviewList = new ArrayList<>();
-
-
     private ReviewArrayAdapter reviewArrayAdapter;
     private ListView movieListView;
 
@@ -44,24 +42,22 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         
-        movieListView = (ListView) findViewById(R.id.movieListView);
+        movieListView = findViewById(R.id.movieListView);
         reviewArrayAdapter = new ReviewArrayAdapter(this, reviewList);
         movieListView.setAdapter(reviewArrayAdapter);
 
 
 
-        FloatingActionButton fab =
-                (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
 
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                EditText movieEditText =
-                        (EditText) findViewById(R.id.movieEditText);
+                EditText movieEditText = findViewById(R.id.movieEditText);
                 URL url = createURL(movieEditText.getText().toString());
 
                 if (url != null) {

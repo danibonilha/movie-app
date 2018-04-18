@@ -22,5 +22,6 @@
     <string name="gave">I gave </string>
     <string name="check_review">Check full review in the link below: </string>
     <string name="review_rating">Rate and share on Facebook</string>
+    <string name="full_review_btn">See full review!</string>
 
 </resources>

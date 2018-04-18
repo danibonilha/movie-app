@@ -1,25 +1,24 @@
 package com.dbonilha.movieapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.net.Uri;
 import android.os.Bundle;
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.share.model.ShareLinkContent;
 import com.facebook.share.widget.ShareDialog;
-
 import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
-import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.webkit.WebSettings;
+import android.webkit.WebView;
+import android.webkit.WebViewClient;
+import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
-
-
-
-
 
 
 public class ReviewDescription extends AppCompatActivity {
@@ -27,10 +26,12 @@ public class ReviewDescription extends AppCompatActivity {
     RatingBar reviewRatingBar;
     TextView summaryText;
     TextView reviewSumTextView;
-    TextView urlText;
     ShareDialog shareDialog;
     CallbackManager callbackManager;
     Intent intent;
+    WebView webView;
+    Button fullReviewBtn;
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,23 +39,36 @@ public class ReviewDescription extends AppCompatActivity {
 
         setContentView(R.layout.activity_review_description);
 
+        summaryText = findViewById(R.id.summaryTextView);
+        reviewSumTextView = findViewById(R.id.reviewSumTextView);
+        reviewRatingBar = findViewById(R.id.reviewRatingBar);
+        fullReviewBtn = findViewById(R.id.fullRevBtn);
+        webView =  findViewById(R.id.fullReviewPage);
+        progressBar = findViewById(R.id.progressBarWeb);
+        progressBar.setVisibility(View.GONE);
+        Toolbar toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //criação do Up button
+
         //inicializa sdk do facebook
         FacebookSdk.sdkInitialize(getApplicationContext());
         callbackManager = CallbackManager.Factory.create();
         shareDialog = new ShareDialog(this);
-
-
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);  //criação do Up button
-
         intent = getIntent();
         String summary = intent.getStringExtra(("summary"));
         final String urlReview = intent.getStringExtra(("link"));
 
-        summaryText = (TextView) findViewById(R.id.summaryTextView);
-        reviewSumTextView = (TextView) findViewById(R.id.reviewSumTextView);
-        reviewRatingBar = (RatingBar) findViewById(R.id.reviewRatingBar);
+        setSummary(summary);
+
+        WebSettings webSettings = webView.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+        webView.setWebViewClient(new MyWebClient());
+
+        fullReviewBtn.setOnClickListener(new View.OnClickListener() {
+            public void onClick(View v) {
+                loadWebView(urlReview);
+            }
+        });
 
         //controla a interação com a Rating Bar
         reviewRatingBar.setOnRatingBarChangeListener(new RatingBar.OnRatingBarChangeListener(){
@@ -76,6 +90,31 @@ public class ReviewDescription extends AppCompatActivity {
             }
         });
 
+    }
+
+    private class MyWebClient extends WebViewClient {
+
+        @Override
+        public void onPageFinished(WebView view, String url) {
+            super.onPageFinished(view, url);
+            progressBar.setVisibility(view.GONE);
+
+        }
+
+        @Override
+        public void onPageStarted(WebView view, String url, Bitmap favicon) {
+            super.onPageStarted(view, url, favicon);
+        }
+
+        @Override
+        public boolean shouldOverrideUrlLoading(WebView view, String url) {
+            view.loadUrl(url);
+            return true;
+
+        }
+    }
+
+    private void setSummary(String summary){
         //verifica se contem summary_short, se não houver mostra uma snackbar
 
         if (!summary.isEmpty()) {
@@ -84,11 +123,19 @@ public class ReviewDescription extends AppCompatActivity {
         else {
             reviewSumTextView.setVisibility(View.INVISIBLE);     //esconde "Review Summary" r
             reviewRatingBar.setVisibility(View.INVISIBLE);      // e a ratingbar
+            fullReviewBtn.setVisibility(View.INVISIBLE);
             Snackbar.make(findViewById(R.id.reviewLayout),
                     R.string.no_summary, Snackbar.LENGTH_LONG).show();
 
         }
+    }
 
+    private void loadWebView(String url){
+        webView.loadUrl(url);
+        progressBar.setVisibility(View.VISIBLE);
+        reviewSumTextView.setVisibility(View.GONE);
+        fullReviewBtn.setVisibility(View.GONE);
+        summaryText.setVisibility(View.GONE);
     }
 
     @Override
